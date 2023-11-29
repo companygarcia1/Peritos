@@ -2,7 +2,10 @@ package com.example.peritos.ui
 
 import android.content.Context
 import android.content.Intent
+import com.example.peritos.ui.activity.AccidentCrudActivity
 import com.example.peritos.ui.activity.AccidentDetailActivity
+import com.example.peritos.ui.activity.VehicleCrudActivity
+import com.example.peritos.ui.activity.VehicleDetailActivity
 
 object NavigationManager {
     fun openAccidentDetail(ctx: Context, id :Int) {
@@ -12,7 +15,16 @@ object NavigationManager {
     }
 
     fun openAccidentCreate(ctx: Context) {
-        val intent = Intent(ctx, AccidentDetailActivity::class.java)
+        val intent = Intent(ctx, AccidentCrudActivity::class.java)
+        ctx.startActivity(intent)
+    }
+
+    fun openVehicleDetail(ctx: Context, id: Int) {
+        val intent = Intent(ctx, VehicleDetailActivity::class.java)
+        ctx.startActivity(intent)
+    }
+    fun openVehicleCreate(ctx: Context) {
+        val intent = Intent(ctx, VehicleCrudActivity::class.java)
         ctx.startActivity(intent)
     }
 }

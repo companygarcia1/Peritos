@@ -7,9 +7,9 @@ data class Accident(
     var id: Int,
     var lugar: String,
     var fecha: Date,
-    var vehiculo: Vehicle,
+    var vehiculoId: Int,
     var foto: String,
     var comentario: String,
     var tlf: String,
-    var tipoDaño: TipoDaño
+    var tipoDaño: TipoDaño,
 )

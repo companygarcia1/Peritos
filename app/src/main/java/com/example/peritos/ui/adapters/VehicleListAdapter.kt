@@ -7,22 +7,16 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.peritos.databinding.AccidentAdapterItemBinding
 import com.example.peritos.model.accident.Accident
+import com.example.peritos.model.vehicle.Vehicle
 
-class AccidentListAdapter() : BaseAdapter() {
-    private lateinit var context: Context
-    private lateinit var list:  List<Accident>
-
-    constructor(context: Context, list:  List<Accident>) : this() {
-        this.context = context
-        this.list = list
-    }
+class VehicleListAdapter(var context: Context, private var list:  List<Vehicle>) : BaseAdapter() {
 
     override fun getCount(): Int {
-        return this.list.size
+        return list.size
     }
 
     override fun getItem(position: Int): Any {
-        return this.list[position]
+        return list[position]
     }
 
     override fun getItemId(p0: Int): Long {
@@ -36,12 +30,13 @@ class AccidentListAdapter() : BaseAdapter() {
         ) as LayoutInflater
         val binding = AccidentAdapterItemBinding.inflate(inflator)
 
-       // binding.txtLicense.text = item.vehiculo
-        binding.txtModel.text = item.tipoDaño.name
+        binding.txtLicense.text = item.matricula
+        binding.txtModel.text = item.tipoVehiculo.name
         return binding.root
     }
 
-    fun setData(cars: List<Accident>) {
+    fun setData(cars: List<Vehicle>) {
         this.list = cars
+        notifyDataSetChanged()
     }
 }

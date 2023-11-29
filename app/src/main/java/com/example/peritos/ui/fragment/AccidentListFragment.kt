@@ -29,10 +29,10 @@ class AccidentListFragment : Fragment() {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setListener()
+    override fun onResume() {
+        super.onResume()
         configView()
+        setListener()
     }
 
     private fun setListener() {

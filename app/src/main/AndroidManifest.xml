@@ -13,8 +13,21 @@
         android:theme="@style/Theme.Peritos"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.VehicleDetailActivity"
+            android:exported="false"
+            android:label="Detalle del vehiculo" />
+        <activity
+            android:name=".ui.activity.VehicleCrudActivity"
+            android:exported="false"
+            android:label="Crud del vehiculo" />
+        <activity
+            android:name=".ui.activity.AccidentCrudActivity"
+            android:exported="false"
+            android:label="Crud del Accidente"  />
+        <activity
             android:name=".ui.activity.AccidentDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Detalle del Accidente"  />
         <activity
             android:name=".ui.activity.HomeActivity"
             android:exported="true">
