@@ -43,11 +43,8 @@ class HomeActivity : AppCompatActivity() {
     private fun setListener() {
 
         binding.button.setOnClickListener {
-            DataSource.vehicleDataSource()
-                .addVehiculo(this, Vehicle(1, "seguro", "matricula", TipoVehiculo.COCHE))
 
-
-            NavigationManager.openAccidentCreate(this)
+            NavigationManager.openVehicleCreate(this)
 
         }
     }

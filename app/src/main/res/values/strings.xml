@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Accidentes de trafico</string>
+    <string-array name="array_nombres">
+        <item>Javier</item>
+        <item>Nacho</item>
+        <item>Patricia</item>
+        <item>Miguel</item>
+        <item>Susana</item>
+        <item>Rosa</item>
+        <item>Juan</item>
+        <item>Pedro</item>
+    </string-array>
 </resources>

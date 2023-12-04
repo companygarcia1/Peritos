@@ -16,9 +16,9 @@ class VehiculoDataSourceFile(private val filePath: String) : IVehiculoDataSoruce
         guardarDatos(context)
     }
 
-    override fun borrarVehiculo(context: Context, id: Int, vehicle: Vehicle) {
+    override fun borrarVehiculo(context: Context, id: Int) {
         cargarDatos(context)
-        vehicles.removeIf { it.id == id && it == vehicle }
+        vehicles.removeIf { it.id == id }
         guardarDatos(context)
     }
 
