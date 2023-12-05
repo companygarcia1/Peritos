@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.peritos.databinding.FragmentAccindentListBinding
 import com.example.peritos.model.DataSource
 import com.example.peritos.model.accident.Accident
-import com.example.peritos.model.vehicle.Vehicle
+import com.example.peritos.model.accident.TipoDaño
 import com.example.peritos.ui.NavigationManager
 import com.example.peritos.ui.adapters.AccidentListAdapter
 
@@ -19,6 +19,7 @@ class AccidentListFragment : Fragment() {
     private lateinit var ctx: Context
     private lateinit var adapter: AccidentListAdapter
 
+    private var filter: TipoDaño? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)
         ctx = context
@@ -51,12 +52,38 @@ class AccidentListFragment : Fragment() {
     }
 
     private fun configView() {
-        val accidentes = DataSource.accidentDataSource().listAccident(ctx)
+        val accidentes = ArrayList<Accident>()
         adapter = AccidentListAdapter(ctx, accidentes)
         binding.listview.adapter = adapter
         binding.listview.emptyView = binding.txtEmptyview
-        if (accidentes.isEmpty()) {
-            binding.txtEmptyview.setText("No hay accidentes")
+        filter()
+    }
+
+    private fun filter() {
+        var accidentes = DataSource.accidentDataSource().listAccident(ctx)
+        if (filter != null) {
+            accidentes = accidentes.filter { it.tipoDano == filter }
         }
+        adapter.setData(accidentes)
+    }
+
+    fun filterGrave() {
+        filter = TipoDaño.GRAVE
+        filter()
+    }
+
+    fun filterMedium() {
+        filter = TipoDaño.MEDIO
+        filter()
+    }
+
+    fun filterLight() {
+        filter = TipoDaño.LEVE
+        filter()
+    }
+
+    fun filterAll() {
+        filter = null
+        filter()
     }
 }

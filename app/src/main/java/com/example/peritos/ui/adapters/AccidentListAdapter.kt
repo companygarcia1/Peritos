@@ -41,5 +41,6 @@ class AccidentListAdapter(var context: Context,private var list:  List<Accident>
 
     fun setData(cars: List<Accident>) {
         this.list = cars
+        notifyDataSetChanged()
     }
 }
