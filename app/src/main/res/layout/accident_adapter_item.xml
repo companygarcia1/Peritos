@@ -61,7 +61,9 @@
                     />
 
             </LinearLayout>
-
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
             <!-- Buttons -->
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -69,20 +71,21 @@
                 android:layout_margin="8dp"
                 android:orientation="horizontal"
                 android:layout_gravity="end">
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnEdit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="Editar"
-                    style="?attr/borderlessButtonStyle"
-                    />
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnDelete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/red"
                     android:text="Borrar"
+                    style="?attr/borderlessButtonStyle"
+                    />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="Editar"
                     style="?attr/borderlessButtonStyle"
                     />
             </LinearLayout>
