@@ -34,4 +34,10 @@ object NavigationManager {
         intent.putExtra(VehicleCrudActivity.EXTRA_ID, id)
         ctx.startActivity(intent)
     }
+
+    fun openAccidentUpdate(ctx: Context, id :Int) {
+        val intent = Intent(ctx, AccidentCrudActivity::class.java)
+        intent.putExtra(AccidentCrudActivity.EXTRA_ID, id)
+        ctx.startActivity(intent)
+    }
 }

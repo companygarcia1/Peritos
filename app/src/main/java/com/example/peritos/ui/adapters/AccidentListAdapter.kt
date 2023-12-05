@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import com.example.peritos.R
 import com.example.peritos.databinding.AccidentAdapterItemBinding
 import com.example.peritos.model.DataSource
 import com.example.peritos.model.accident.Accident
+import com.example.peritos.ui.NavigationManager
 import com.example.peritos.utils.FileManager
 
-class AccidentListAdapter(var context: Context,private var list:  List<Accident>) : BaseAdapter() {
+class AccidentListAdapter(var context: Context, private var list: List<Accident>) : BaseAdapter() {
 
     override fun getCount(): Int {
         return this.list.size
@@ -31,11 +33,24 @@ class AccidentListAdapter(var context: Context,private var list:  List<Accident>
         ) as LayoutInflater
         val binding = AccidentAdapterItemBinding.inflate(inflator)
 
-       // binding.txtLicense.text = item.vehiculo
+        // binding.txtLicense.text = item.vehiculo
         binding.txtModel.text = item.tipoDano.name
-        binding.imageView.setImageBitmap(FileManager.loadBitmapFromFilePath(item.foto))
-        val vehicle = DataSource.vehicleDataSource().vehiculo(context,item.vehiculoId)
+        val image = FileManager.loadBitmapFromFilePath(item.foto)
+        if (image != null) {
+            binding.imageView.setImageBitmap(FileManager.loadBitmapFromFilePath(item.foto))
+        } else {
+            binding.imageView.setImageResource(R.drawable.ic_launcher_background)
+        }
+
+        val vehicle = DataSource.vehicleDataSource().vehiculo(context, item.vehiculoId)
         binding.txtLicense.text = vehicle?.matricula
+        binding.txtComments.text = item.comentario
+        binding.btnEdit.setOnClickListener {
+            NavigationManager.openAccidentUpdate(context, item.id)
+        }
+        binding.btnDelete.setOnClickListener {
+
+        }
         return binding.root
     }
 

@@ -206,4 +206,8 @@ class AccidentCrudActivity : AppCompatActivity() {
             photo = FileManager.saveBitmapToFile(this, thumbnail,"photo.png")
         }
     }
+
+    companion object {
+        val EXTRA_ID: String="id"
+    }
 }

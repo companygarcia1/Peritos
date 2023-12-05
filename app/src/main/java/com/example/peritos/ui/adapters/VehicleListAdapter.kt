@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.peritos.databinding.AccidentAdapterItemBinding
+import com.example.peritos.databinding.VehicleAdapterItemBinding
 import com.example.peritos.model.accident.Accident
 import com.example.peritos.model.vehicle.Vehicle
 
@@ -28,7 +29,7 @@ class VehicleListAdapter(var context: Context, private var list:  List<Vehicle>)
         val inflator = context!!.getSystemService(
             Context.LAYOUT_INFLATER_SERVICE
         ) as LayoutInflater
-        val binding = AccidentAdapterItemBinding.inflate(inflator)
+        val binding = VehicleAdapterItemBinding.inflate(inflator)
 
         binding.txtLicense.text = item.matricula
         binding.txtModel.text = item.tipoVehiculo.name
