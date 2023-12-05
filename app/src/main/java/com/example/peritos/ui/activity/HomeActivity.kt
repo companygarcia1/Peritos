@@ -3,6 +3,7 @@ package com.example.peritos.ui.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.viewpager2.widget.ViewPager2
 import com.example.peritos.R
 import com.example.peritos.databinding.ActivityHomeBinding
 import com.example.peritos.model.DataSource
@@ -18,6 +19,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var adapter: FragmentAdapter
+
+    private var activeFragment = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -43,9 +46,22 @@ class HomeActivity : AppCompatActivity() {
     private fun setListener() {
 
         binding.button.setOnClickListener {
+            when (activeFragment) {
+                0 -> {
+                    NavigationManager.openAccidentCreate(this)
+                }
 
-            NavigationManager.openVehicleCreate(this)
-
+                1 -> {
+                    NavigationManager.openVehicleCreate(this)
+                }
+            }
         }
+
+        binding.viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                activeFragment = position
+            }
+        })
     }
 }

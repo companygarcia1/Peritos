@@ -11,5 +11,5 @@ data class Accident(
     var foto: String,
     var comentario: String,
     var tlf: String,
-    var tipoDaño: TipoDaño,
+    var tipoDano: TipoDaño,
 )

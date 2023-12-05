@@ -26,7 +26,7 @@ class AccidentListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAccindentListBinding.inflate(inflater)
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return binding.root
     }
 
     override fun onResume() {
@@ -40,9 +40,12 @@ class AccidentListFragment : Fragment() {
     }
 
     private fun configView() {
-        adapter = AccidentListAdapter()
-        val accident = DataSource.accidentDataSource().listAccident(ctx)
-        adapter.setData(accident)
+        val accidentes = DataSource.accidentDataSource().listAccident(ctx)
+        adapter = AccidentListAdapter(ctx, accidentes)
         binding.listview.adapter = adapter
+        binding.listview.emptyView = binding.txtEmptyview
+        if (accidentes.isEmpty()) {
+            binding.txtEmptyview.setText("No hay accidentes")
+        }
     }
 }

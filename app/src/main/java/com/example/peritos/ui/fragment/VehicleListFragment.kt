@@ -29,7 +29,7 @@ class VehicleListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentVehicleListBinding.inflate(inflater)
         return binding.root
     }
@@ -52,7 +52,12 @@ class VehicleListFragment : Fragment() {
     }
 
     private fun configView() {
-        adapter = VehicleListAdapter(ctx, DataSource.vehicleDataSource().listarVehiculos(ctx))
+        val vehicles = DataSource.vehicleDataSource().listarVehiculos(ctx)
+        adapter = VehicleListAdapter(ctx, vehicles)
         binding.listview.adapter = adapter
+        binding.listview.emptyView = binding.txtEmptyview
+        if (vehicles.isEmpty()) {
+            binding.txtEmptyview.text = "No hay accidentes"
+        }
     }
 }

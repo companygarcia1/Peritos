@@ -6,16 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.peritos.databinding.AccidentAdapterItemBinding
+import com.example.peritos.model.DataSource
 import com.example.peritos.model.accident.Accident
+import com.example.peritos.utils.FileManager
 
-class AccidentListAdapter() : BaseAdapter() {
-    private lateinit var context: Context
-    private lateinit var list:  List<Accident>
-
-    constructor(context: Context, list:  List<Accident>) : this() {
-        this.context = context
-        this.list = list
-    }
+class AccidentListAdapter(var context: Context,private var list:  List<Accident>) : BaseAdapter() {
 
     override fun getCount(): Int {
         return this.list.size
@@ -31,13 +26,16 @@ class AccidentListAdapter() : BaseAdapter() {
 
     override fun getView(position: Int, p1: View?, p2: ViewGroup?): View {
         val item = this.list[position]
-        val inflator = context!!.getSystemService(
+        val inflator = context.getSystemService(
             Context.LAYOUT_INFLATER_SERVICE
         ) as LayoutInflater
         val binding = AccidentAdapterItemBinding.inflate(inflator)
 
        // binding.txtLicense.text = item.vehiculo
-        binding.txtModel.text = item.tipoDaño.name
+        binding.txtModel.text = item.tipoDano.name
+        binding.imageView.setImageBitmap(FileManager.loadBitmapFromFilePath(item.foto))
+        val vehicle = DataSource.vehicleDataSource().vehiculo(context,item.vehiculoId)
+        binding.txtLicense.text = vehicle?.matricula
         return binding.root
     }
 
